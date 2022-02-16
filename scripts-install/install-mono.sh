@@ -4,17 +4,14 @@
 apt -y update \
     && apt -y install gnupg dirmngr ca-certificates apt-transport-https
 
-## Obtain latest mono stable version depo ##
+## Add mono depo ##
 UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
     && echo "deb https://download.mono-project.com/repo/ubuntu stable-${UBUNTU_RELEASE} main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
     && apt -y update
 
-#MONO_VERSION=$(curl -s 'https://www.mono-project.com/download/stable/#download-lin-ubuntu' | grep 'latest Stable' | cut -d'(' -f 2 | cut -d')' -f 1)
-#apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
-#    && echo "deb https://download.mono-project.com/repo/ubuntu stable-${UBUNTU_RELEASE}/snapshots/${MONO_VERSION} main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
-#    && apt -y update
-
+## Fix locales and tzdata to prevent tzdata stopping installation of mono ##
+# Must be installed AFTER mono depo is added #
 apt -y install locales tzdata
 locale-gen 'en_GB.UTF-8' \
     && dpkg-reconfigure --frontend=noninteractive locales
