@@ -14,7 +14,7 @@ npm install --global flood
 FLOOD_VERSION=$(npm list -g | grep 'flood' | cut -d'@' -f 2)
 
 ## Set build info ##
-echo "$(date "+%d.%m.%Y %T") Added flood (${FLOOD_VERSION}) with transmission-daemon (${TRANSMISSION_VERSION})" >> /build.info
+echo "$(date "+%d.%m.%Y %T") Added flood (v${FLOOD_VERSION}) with transmission-daemon (v${TRANSMISSION_VERSION})" >> /build.info
 
 ## Clean up ##
 apt-get -y autoremove \
