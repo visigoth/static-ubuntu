@@ -2,12 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install gnupg dirmngr ca-certificates apt-transport-https locales tzdata
-locale-gen 'en_GB.UTF-8' \
-    && dpkg-reconfigure --frontend=noninteractive locales
-ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
-    && echo 'Europe/London' > /etc/timezone \
-    && dpkg-reconfigure --frontend=noninteractive tzdata
+    && apt -y install gnupg dirmngr ca-certificates apt-transport-https
 
 ## Obtain latest mono stable version depo ##
 UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
@@ -19,6 +14,13 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BF
 #apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
 #    && echo "deb https://download.mono-project.com/repo/ubuntu stable-${UBUNTU_RELEASE}/snapshots/${MONO_VERSION} main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
 #    && apt -y update
+
+apt -y install locales tzdata
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
+    && echo 'Europe/London' > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Install mono-complete (cover most cases of "assembly not found" errors) ##
 apt -y install mono-complete
