@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt-get -y update \
-    && apt-get -y install --no-install-recommends --no-install-suggests libicu66 libmediainfo0v5 sqlite3
+apt -y update \
+    && apt -y install --no-install-recommends --no-install-suggests libicu66 libmediainfo0v5 sqlite3
     
 ## Install Radarr ##
 RADARR_BRANCH="master"
@@ -16,10 +16,10 @@ rm -rf /app/radarr/bin \
 ## Set update method and build info ##
 echo "UpdateMethod=docker\nBranch=${RADARR_BRANCH}\nPackageVersion=${RADARR_VERSION}\nPackageAuthor=[testdasi](https://github.com/testdasi)" > /app/radarr/package_info \
     && rm -rf /app/radarr/bin/Radarr.Update
-echo "$(date "+%d.%m.%Y %T") Added radarr version ${RADARR_VERSION} from ${RADARR_BRANCH} branch" >> /build_date.info
+echo "$(date "+%d.%m.%Y %T") Added radarr version ${RADARR_VERSION} from ${RADARR_BRANCH} branch" >> /build.info
 
 ## Clean up ##
-apt-get -y autoremove \
-    && apt-get -y autoclean \
-    && apt-get -y clean \
+apt -y autoremove \
+    && apt -y autoclean \
+    && apt -y clean \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
