@@ -15,7 +15,7 @@ rm -rf /app/prowlarr/bin \
 
 ## Set update method and build info ##
 echo "UpdateMethod=docker\nBranch=${PROWLARR_BRANCH}\nPackageVersion=${PROWLARR_VERSION}\nPackageAuthor=[testdasi](https://github.com/testdasi)" > /app/prowlarr/package_info \
-    && rm -rf /app/prowlarr/Prowlarr.Update
+    && rm -rf /app/prowlarr/bin/Prowlarr.Update
 echo "$(date "+%d.%m.%Y %T") Added prowlarr version ${PROWLARR_VERSION} from ${PROWLARR_BRANCH} branch" >> /build_date.info
 
 ## Clean up ##
