@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install ggnupg dirmngr ca-certificates
+    && apt -y install gnupg dirmngr ca-certificates
 
 ## Obtain latest mono stable version depo ##
 UBUNTU_RELEASE='focal'
