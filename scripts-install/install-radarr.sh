@@ -8,7 +8,7 @@ apt -y update \
 RADARR_BRANCH="master"
 RADARR_VERSION=$(curl -sL "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/changes?os=linux&runtime=netcore&arch=x64" | jq -r '.[0].version')
 rm -rf /app/radarr/bin \
-    && curl -s -o /tmp/radarr.tar.gz -L "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/updatefile?version=${RADARR_VERSION}&os=linux&runtime=netcore&arch=x64" \
+    && curl -sL "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/updatefile?version=${RADARR_VERSION}&os=linux&runtime=netcore&arch=x64" -o /tmp/radarr.tar.gz \
     && mkdir -p /app/radarr/bin \
     && tar ixzf /tmp/radarr.tar.gz -C /app/radarr/bin --strip-components=1 \
     && rm -f /tmp/radarr.tar.gz
