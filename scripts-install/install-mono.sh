@@ -16,7 +16,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BF
 #    && apt -y update
 
 ## Install mono-complete (cover most cases of "assembly not found" errors) ##
-apt -y install mono-complete
+apt-get -y install mono-complete
 MONO_VERSION=$(mono --version | grep version | cut -d' ' -f 5)
 
 ## Set build info ##
