@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt-get -y update \
-    && apt-get -y install --no-install-recommends --no-install-suggests libicu66
+apt -y update \
+    && apt -y install --no-install-recommends --no-install-suggests libicu66
 
 ## Install jackett ##
 JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" | jq -r .tag_name)
@@ -12,10 +12,10 @@ rm -rf /app/jackett \
     && tar xf /tmp/jacket.tar.gz -C /app/jackett --strip-components=1 \
     && rm -f /tmp/jacket.tar.gz \
     && chown -R root:root /app/jackett \
-    && echo "$(date "+%d.%m.%Y %T") Added jackett version ${JACKETT_VERSION}" >> /build_date.info
+    && echo "$(date "+%d.%m.%Y %T") Added jackett version ${JACKETT_VERSION}" >> /build.info
 
 ## Clean up ##
-apt-get -y autoremove \
-    && apt-get -y autoclean \
-    && apt-get -y clean \
+apt -y autoremove \
+    && apt -y autoclean \
+    && apt -y clean \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
