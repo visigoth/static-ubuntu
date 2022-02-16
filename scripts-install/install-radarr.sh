@@ -6,13 +6,17 @@ apt-get -y update \
     
 ## Install Radarr ##
 RADARR_BRANCH="master"
-RADARR_RELEASE=$(curl -sL "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/changes?os=linux&runtime=netcore&arch=x64" | jq -r '.[0].version')
-curl -o /tmp/radarr.tar.gz -L "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/updatefile?version=${RADARR_RELEASE}&os=linux&runtime=netcore&arch=x64" \
-    && mkdir -p /app/radarr \
-    && tar ixzf /tmp/radarr.tar.gz -C /app/radarr --strip-components=1 \
-    && rm -f /tmp/radarr.tar.gz \
-    && rm -rf /app/radarr/Radarr.Update \
-    && echo "$(date "+%d.%m.%Y %T") Added radarr version ${RADARR_RELEASE} from ${RADARR_BRANCH} branch" >> /build_date.info
+RADARR_VERSION=$(curl -sL "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/changes?os=linux&runtime=netcore&arch=x64" | jq -r '.[0].version')
+rm -rf /app/radarr/bin \
+    && curl -o /tmp/radarr.tar.gz -L "https://radarr.servarr.com/v1/update/${RADARR_BRANCH}/updatefile?version=${RADARR_VERSION}&os=linux&runtime=netcore&arch=x64" \
+    && mkdir -p /app/radarr/bin \
+    && tar ixzf /tmp/radarr.tar.gz -C /app/radarr/bin --strip-components=1 \
+    && rm -f /tmp/radarr.tar.gz
+    
+## Set update method and build info ##
+echo "UpdateMethod=docker\nBranch=${RADARR_BRANCH}\nPackageVersion=${RADARR_VERSION}\nPackageAuthor=[testdasi](https://github.com/testdasi)" > /app/radarr/package_info \
+    && rm -rf /app/radarr/bin/Radarr.Update
+echo "$(date "+%d.%m.%Y %T") Added radarr version ${RADARR_VERSION} from ${RADARR_BRANCH} branch" >> /build_date.info
 
 ## Clean up ##
 apt-get -y autoremove \
