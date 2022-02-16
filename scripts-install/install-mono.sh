@@ -2,11 +2,11 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install gnupg dirmngr ca-certificates apt-transport-https locales
+    && apt -y install gnupg dirmngr ca-certificates apt-transport-https locales tzdata
 locale-gen 'en_GB.UTF-8' \
     && dpkg-reconfigure --frontend=noninteractive locales
 ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
-    && echo 'Europe/London' > /etc/timezone
+    && echo 'Europe/London' > /etc/timezone \
     && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Obtain latest mono stable version depo ##
