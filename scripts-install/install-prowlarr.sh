@@ -8,7 +8,7 @@ apt -y update \
 PROWLARR_BRANCH="develop"
 PROWLARR_VERSION=$(curl -sL "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/changes?runtime=netcore&os=linux" | jq -r '.[0].version')
 rm -rf /app/prowlarr/bin \
-    && curl -s -o /tmp/prowlarr.tar.gz -L "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/updatefile?version=${PROWLARR_VERSION}&os=linux&runtime=netcore&arch=x64" \
+    && curl -sL "https://prowlarr.servarr.com/v1/update/${PROWLARR_BRANCH}/updatefile?version=${PROWLARR_VERSION}&os=linux&runtime=netcore&arch=x64" -o /tmp/prowlarr.tar.gz \
     && mkdir -p /app/prowlarr/bin \
     && tar ixzf /tmp/prowlarr.tar.gz -C /app/prowlarr/bin --strip-components=1 \
     && rm -f /tmp/prowlarr.tar.gz
