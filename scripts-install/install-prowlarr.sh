@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt-get -y update \
-    && apt-get -y install --no-install-recommends --no-install-suggests libicu66 sqlite3
+apt -y update \
+    && apt -y install --no-install-recommends --no-install-suggests libicu66 sqlite3
 
 ## Install Prowlarr ##
 PROWLARR_BRANCH="develop"
@@ -19,8 +19,8 @@ echo "UpdateMethod=docker\nBranch=${PROWLARR_BRANCH}\nPackageVersion=${PROWLARR_
 echo "$(date "+%d.%m.%Y %T") Added prowlarr version ${PROWLARR_VERSION} from ${PROWLARR_BRANCH} branch" >> /build_date.info
 
 ## Clean up ##
-apt-get -y autoremove \
-    && apt-get -y autoclean \
-    && apt-get -y clean \
+apt -y autoremove \
+    && apt -y autoclean \
+    && apt -y clean \
     && rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
     
