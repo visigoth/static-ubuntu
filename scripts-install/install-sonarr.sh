@@ -7,7 +7,8 @@ apt-get -y update \
 ## Install sonarr ##
 SONARR_BRANCH="main"
 SONARR_VERSION=$(curl -sX GET http://services.sonarr.tv/v1/releases | jq -r ".[] | select(.branch==\"${SONARR_BRANCH}\") | .version")
-curl -o /tmp/sonarr.tar.gz -L "https://download.sonarr.tv/v3/main/${SONARR_BRANCH}/Sonarr.main.${SONARR_VERSION}.linux.tar.gz" \
+rm -rf /app/sonarr/bin \
+    && curl -o /tmp/sonarr.tar.gz -L "https://download.sonarr.tv/v3/main/${SONARR_BRANCH}/Sonarr.main.${SONARR_VERSION}.linux.tar.gz" \
     && mkdir -p /app/sonarr/bin \
     && tar xf /tmp/sonarr.tar.gz -C /app/sonarr/bin --strip-components=1 \
     && rm -f /tmp/sonarr.tar.gz
