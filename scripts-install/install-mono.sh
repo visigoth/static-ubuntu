@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install gnupg dirmngr ca-certificates
+    && apt -y install gnupg dirmngr ca-certificates apt-transport-https
 
 ## Obtain latest mono stable version depo ##
 UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
