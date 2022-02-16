@@ -11,6 +11,7 @@ rm -rf /app/nzbhydra2/bin \
     && mkdir -p /app/nzbhydra2/bin \
     && unzip /tmp/nzbhydra2.zip -d /app/nzbhydra2/bin \
     && chmod +x /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py \
+    && chmod +x /app/nzbhydra2/bin/nzbhydra2wrapper.py \
     && chmod +x /app/nzbhydra2/bin/nzbhydra2 \
     && rm -f /tmp/nzbhydra2.zip
 
