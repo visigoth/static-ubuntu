@@ -7,7 +7,7 @@ apt -y update \
 ## Install jackett ##
 JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" | jq -r .tag_name)
 rm -rf /app/jackett \
-    && curl -s -o /tmp/jacket.tar.gz -L "https://github.com/Jackett/Jackett/releases/download/${JACKETT_VERSION}/Jackett.Binaries.LinuxAMDx64.tar.gz" \
+    && curl -sL "https://github.com/Jackett/Jackett/releases/download/${JACKETT_VERSION}/Jackett.Binaries.LinuxAMDx64.tar.gz" -o /tmp/jacket.tar.gz \
     && mkdir -p /app/jackett \
     && tar xf /tmp/jacket.tar.gz -C /app/jackett --strip-components=1 \
     && rm -f /tmp/jacket.tar.gz \
