@@ -2,7 +2,10 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install gnupg dirmngr ca-certificates apt-transport-https
+    && apt -y install gnupg dirmngr ca-certificates apt-transport-https locales
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Obtain latest mono stable version depo ##
 UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
@@ -16,7 +19,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BF
 #    && apt -y update
 
 ## Install mono-complete (cover most cases of "assembly not found" errors) ##
-apt-get -y install mono-complete
+apt -y install mono-complete
 MONO_VERSION=$(mono --version | grep version | cut -d' ' -f 5)
 
 ## Set build info ##
