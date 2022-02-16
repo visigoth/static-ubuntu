@@ -21,7 +21,7 @@ ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
 
 ## Install mono-complete (cover most cases of "assembly not found" errors) ##
 apt -y install mono-complete
-MONO_VERSION=$(mono --version | grep version | cut -d' ' -f 5)
+MONO_VERSION=$(mono --version | grep 'version' | cut -d' ' -f 5)
 
 ## Set build info ##
 echo "$(date "+%d.%m.%Y %T") Added mono version ${MONO_VERSION}" >> /build.info
