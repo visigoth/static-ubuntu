@@ -8,8 +8,8 @@ apt -y update \
 add-apt-repository multiverse \
     && add-apt-repository universe \
     && add-apt-repository ppa:jcfp/nobetas \
-    && apt -y update \
-    && apt -y full-upgrade
+    && apt -y update
+#apt -y full-upgrade
 apt -y install sabnzbdplus
 
 ## Add sabnzbd repo ##
