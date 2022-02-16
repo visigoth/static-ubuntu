@@ -5,11 +5,11 @@ apt -y update \
     && apt -y install gnupg software-properties-common
 
 ## Add repos ##
-add-apt-repository multiverse \
-    && add-apt-repository universe \
-    && add-apt-repository ppa:jcfp/nobetas \
-    && apt -y update
-#apt -y full-upgrade
+add-apt-repository -y multiverse \
+    && add-apt-repository -y universe \
+    && add-apt-repository -y ppa:jcfp/nobetas \
+    && apt -y update \
+    && apt -y full-upgrade
 apt -y install sabnzbdplus
 
 ## Add sabnzbd repo ##
