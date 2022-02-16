@@ -7,13 +7,11 @@ apt-get -y update \
 
 ## Install torrent client ##
 apt-get -y install transmission-daemon
-CLITXT=$(dpkg -s transmission-daemon | grep 'Version')
-TRANSMISSION_VERSION=${CLITXT:9:12}
+TRANSMISSION_VERSION=$(dpkg -s transmission-daemon | grep 'Version' | cut -d' ' -f 2)
 
 ## New fork of flood at https://github.com/jesec/flood ##
 npm install --global flood
-CLITXT=$(npm list -g | grep 'flood')
-FLOOD_VERSION=${CLITXT:10:5}
+FLOOD_VERSION=$(npm list -g | grep 'flood' | cut -d'@' -f 2)
 
 ## Set build info ##
 echo "$(date "+%d.%m.%Y %T") Added flood (${FLOOD_VERSION}) with transmission-daemon (${TRANSMISSION_VERSION})" >> /build.info
