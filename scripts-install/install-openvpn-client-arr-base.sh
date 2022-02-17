@@ -10,3 +10,6 @@ source /testdasi/scripts-install/install-jackett.sh
 source /testdasi/scripts-install/install-flood-transmission.sh
 # always run sab last due needing multiverse repo #
 source /testdasi/scripts-install/install-sabnzbdplus.sh
+
+## Finally add web launcher ##
+source /testdasi/scripts-install/install-launcher.sh
