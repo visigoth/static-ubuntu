@@ -65,10 +65,3 @@ if [[ -f "/app/jackett/jackett" ]]
 then
     source /static-ubuntu/scripts-fix/fix-jackett.sh
 fi
-
-# OpenVPN + NFTables last #
-if [[ -f "/usr/sbin/openvpn" ]]
-then
-    source /static-ubuntu/scripts-set/set-variables-ovpn-port-proto.sh
-    source /static-ubuntu/scripts-set/set-variables-ovpn-eth0.sh
-fi
