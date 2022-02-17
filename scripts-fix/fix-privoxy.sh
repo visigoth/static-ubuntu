@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PRIVOXY_PORT=${TOR_HTTP_PORT}
+
 mkdir -p /config/privoxy \
     && cp -n /static-ubuntu/etc/privoxy /config/privoxy/config
 sed -i "s|listen-address 0\.0\.0\.0:8118|listen-address 0\.0\.0\.0:$PRIVOXY_PORT|g" '/config/privoxy/config'
