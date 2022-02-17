@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TORSOCKS_PORT=${TOR_SOCKS_PORT}
+sed -i "s|_TORSOCKS_PORT_|$TORSOCKS_PORT|g" '/nftables.rules'
 
 mkdir -p /config/tor \
     && cp -n /static-ubuntu/etc/torrc /config/tor/
