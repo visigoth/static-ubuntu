@@ -1,6 +1,7 @@
 #!/bin/bash
 
 HYDRA_PORT=${SEARCHER_GUI_PORT}
+sed -i "s|_HYDRA_PORT_|$HYDRA_PORT|g" '/nftables.rules'
 sed -i "s|:5076|:$HYDRA_PORT|g" '/app/launcher/index.html'
 
 mkdir -p /config/nzbhydra2 \
