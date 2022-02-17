@@ -1,6 +1,7 @@
 #!/bin/bash
 
 RADARR_PORT=${PVR_MOVIE_PORT}
+sed -i "s|_RADARR_PORT_|$RADARR_PORT|g" '/nftables.rules'
 sed -i "s|:7878|:$RADARR_PORT|g" '/app/launcher/index.html'
 
 mkdir -p /config/radarr \
