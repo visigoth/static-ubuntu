@@ -4,14 +4,19 @@
 echo '[info] Set runtime variables and fix configs'
 
 # Fix nftables if installed. Kill docker otherwise. #
-if [[ -f "/usr/sbin/nft" ]]
+if [[ -f "/usr/sbin/openvpn" ]]
 then
-    source /static-ubuntu/scripts-fix/fix-nftables.sh
+    if [[ -f "/usr/sbin/nft" ]]
+    then
+        source /static-ubuntu/scripts-fix/fix-nftables.sh
+    else
+        kill $(pgrep entrypoint.sh)
+    fi
 else
     kill $(pgrep entrypoint.sh)
 fi
 
-
+# Proxy apps #
 if [[ -f "/usr/bin/stubby" ]]
 then
     source /static-ubuntu/scripts-fix/fix-stubby.sh
