@@ -106,8 +106,8 @@ else
             if [ -z $TUN0_IP ]; then
                 echo "[CRITICAL] Tunnel not found. Will not start transmission"
             else
-                echo "[info] Run transmission-daemon in background, binding to tun0 at $TUN0_IP"
-                transmission-daemon --config-dir=/config/transmission --bind-address-ipv4=$TUN0_IP
+                echo "[info] Run transmission-daemon in background with tun0 ipv4 bind at $TUN0_IP and disabled ipv6 bind"
+                transmission-daemon --config-dir=/config/transmission --bind-address-ipv4=$TUN0_IP --bind-address-ipv6=fe80::
             fi
         fi
     fi
