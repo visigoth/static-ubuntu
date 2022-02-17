@@ -36,6 +36,7 @@ else
         if [[ -f "/usr/sbin/danted" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run danted in background on port $DANTE_PORT"
             danted -D -f /config/dante/danted.conf
         fi
     fi
@@ -46,6 +47,7 @@ else
         if [[ -f "/usr/bin/tinyproxy" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run tinyproxy in background with no log on port $TINYPROXY_PORT"
             tinyproxy -c /config/tinyproxy/tinyproxy.conf
         fi
     fi
@@ -56,6 +58,7 @@ else
         if [[ -f "/usr/sbin/tor" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run tor in background on port $TORSOCKS_PORT"
             start-stop-daemon --start --background --name tor --exec /usr/bin/tor -- -f /config/tor/torrc
         fi
     fi
@@ -66,6 +69,7 @@ else
         if [[ -f "/usr/sbin/privoxy" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run privoxy in background on port $PRIVOXY_PORT"
             privoxy /config/privoxy/config
         fi
     fi
@@ -76,6 +80,7 @@ else
         if [[ -f "/usr/bin/sabnzbdplus" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run sabnzbdplus in background on HTTP port $SAB_PORT_A and HTTPS port $SAB_PORT_B"
             sabnzbdplus --daemon --config-file /config/sabnzbdplus/sabnzbdplus.ini --pidfile /config/sabnzbdplus/sabnzbd.pid
         fi
     fi
@@ -86,6 +91,7 @@ else
         if [[ -f "/app/nzbhydra2/package_info" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
             /app/nzbhydra2/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
         fi
     fi
@@ -96,6 +102,7 @@ else
         if [[ -f "/usr/bin/transmission-daemon" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run transmission-daemon in background"
             transmission-daemon --config-dir=/config/transmission
         fi
     fi
@@ -107,6 +114,7 @@ else
         if [[ -f "/usr/bin/flood" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run flood in background at $FLOOD_IP:$FLOOD_PORT"
             start-stop-daemon --start --background --name flood --chdir /usr/bin --exec flood -- --rundir=/config/flood --host=${SERVER_IP} --port=${TORRENT_GUI_PORT}
         fi
     fi
@@ -117,6 +125,7 @@ else
         if [[ -f "/app/jackett/jackett" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run jackett in background on port $JACKETT_PORT"
             start-stop-daemon --start --background --chuid nobody --name jackett --chdir /app/jackett --exec /app/jackett/jackett -- --DataFolder=/config/jackett
         fi
     fi
@@ -127,6 +136,7 @@ else
         if [[ -f "/app/sonarr/package_info" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run sonarr in background on port $SONARR_PORT"
             start-stop-daemon --start --background --name sonarr --chdir /app/sonarr --exec /usr/bin/mono-sonarr -- --debug Sonarr.exe -nobrowser -data=/config/sonarr
         fi
     fi
@@ -137,6 +147,7 @@ else
         if [[ -f "/app/radarr/package_info" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run radarr in background on port $RADARR_PORT"
             start-stop-daemon --start --background --name radarr --chdir /app/radarr --exec /app/radarr/Radarr -- -nobrowser -data=/config/radarr
         fi
     fi
@@ -147,6 +158,7 @@ else
         if [[ -f "/app/prowlarr/package_info" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run prowlarr in background on port $PROWLARR_PORT"
             start-stop-daemon --start --background --name prowlarr --chdir /app/prowlarr --exec /app/prowlarr/Prowlarr -- -nobrowser -data=/config/prowlarr
         fi
     fi
@@ -157,6 +169,7 @@ else
         if [[ -f "/app/launcher/index.html" ]]
         then
             crashed=$(( $crashed + 1 ))
+            echo "[info] Run WebUI launcher in background at $LAUNCHER_IP:$LAUNCHER_PORT"
             start-stop-daemon --start --background --name launcher --chdir /app/launcher --exec /app/launcher/launcher-python3.sh
         fi
     fi
@@ -164,11 +177,16 @@ else
     # Remove blockage #
     rm -f /config/disable_healthcheck
     
-    # Return exit code for healthcheck #
-    if (( $crashed > 0 ))
+    if [[ -f "/config/disable_error" ]]
     then
-        exit 1
+        echo ''
     else
-        exit 0
+        # Return exit code for healthcheck #
+        if (( $crashed > 0 ))
+        then
+            exit 1
+        else
+            exit 0
+        fi
     fi
 fi
