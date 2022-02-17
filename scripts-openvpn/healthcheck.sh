@@ -190,6 +190,7 @@ else
         # Return exit code for healthcheck #
         if (( $crashed > 0 ))
         then
+            touch "/config/healthcheck-failure-at-$(date "+%d.%m.%Y_%T")"
             exit 1
         else
             exit 0
