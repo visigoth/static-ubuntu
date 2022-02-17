@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TINYPROXY_PORT=${HTTP_PROXY_PORT}
+sed -i "s|_TINYPROXY_PORT_|$TINYPROXY_PORT|g" '/nftables.rules'
 
 mkdir -p /config/tinyproxy \
     && cp -n /static-ubuntu/etc/tinyproxy.conf /config/tinyproxy/
