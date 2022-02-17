@@ -71,6 +71,6 @@ fi
 
 if [[ -f "/usr/sbin/openvpn" ]]
 then
-    source /static-ubuntu/scripts-set/set_variables_ovpn_port_proto.sh
-    source /static-ubuntu/scripts-set/set_variables_eth0.sh
+    source /static-ubuntu/scripts-set/set-variables-ovpn-port-proto.sh
+    source /static-ubuntu/scripts-set/set-variables-ovpn-eth0.sh
 fi
