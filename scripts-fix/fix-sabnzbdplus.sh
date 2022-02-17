@@ -2,6 +2,8 @@
 
 SAB_PORT_A=${USENET_HTTP_PORT}
 SAB_PORT_B=${USENET_HTTPS_PORT}
+sed -i "s|_SAB_PORT_A_|$SAB_PORT_A|g" '/nftables.rules'
+sed -i "s|_SAB_PORT_B_|$SAB_PORT_B|g" '/nftables.rules'
 sed -i "s|:8080|:$SAB_PORT_A|g" '/app/launcher/index.html'
 
 mkdir -p /config/sabnzbdplus \
