@@ -1,0 +1,17 @@
+{
+  "Port": 9117,
+  "AllowExternal": true,
+  "AdminPassword": null,
+  "BlackholeDir": "/data/transmission/watch",
+  "UpdateDisabled": false,
+  "UpdatePrerelease": false,
+  "BasePathOverride": "",
+  "OmdbApiKey": "",
+  "OmdbApiUrl": "",
+  "ProxyType": 2,
+  "ProxyUrl": "localhost",
+  "ProxyPort": 1080,
+  "ProxyUsername": "",
+  "ProxyPassword": "",
+  "ProxyIsAnonymous": true
+}

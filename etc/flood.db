@@ -1,0 +1,2 @@
+{"username":"admin","password":"$argon2id$v=19$m=512,t=256,p=1$KPBD6K83ilhbuQEOB7LdFw$stncHEsKJUTDrYGUaV4w7l7+zSUU0W5j9hz4eRvrPv4","client":{"client":"Transmission","type":"rpc","version":1,"url":"http://127.0.0.1:9091/transmission/rpc","username":"","password":""},"level":10,"timestamp":1644766699,"_id":"UVPPmsVm70Wr4J11"}
+{"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
