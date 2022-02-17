@@ -59,7 +59,8 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run tor in background on port $TORSOCKS_PORT"
-            start-stop-daemon --start --background --name tor --exec /usr/bin/tor -- -f /config/tor/torrc
+            #start-stop-daemon --start --background --name tor --exec /usr/bin/tor -- -f /config/tor/torrc
+            tor --runasdaemon 1 -f /config/tor/torrc
         fi
     fi
 
