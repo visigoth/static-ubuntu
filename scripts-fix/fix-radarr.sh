@@ -1,5 +1,8 @@
 #!/bin/bash
 
+RADARR_PORT=${PVR_MOVIE_PORT}
+sed -i "s|:7878|:$RADARR_PORT|g" '/app/launcher/index.html'
+
 mkdir -p /config/radarr \
     && cp -n /static-ubuntu/etc/radarr.xml /config/radarr/config.xml \
     && mkdir -p /data/radarr/downloads \
