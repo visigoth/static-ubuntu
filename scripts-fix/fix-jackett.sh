@@ -1,6 +1,7 @@
 #!/bin/bash
 
 JACKETT_PORT=${TORZNAB_PORT}
+sed -i "s|_JACKETT_PORT_|$JACKETT_PORT|g" '/nftables.rules'
 sed -i "s|:9117|:$JACKETT_PORT|g" '/app/launcher/index.html'
 
 mkdir -p /config/jackett \
