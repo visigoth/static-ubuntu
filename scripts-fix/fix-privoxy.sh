@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PRIVOXY_PORT=${TOR_HTTP_PORT}
+sed -i "s|_PRIVOXY_PORT_|$PRIVOXY_PORT|g" '/nftables.rules'
 
 mkdir -p /config/privoxy \
     && cp -n /static-ubuntu/etc/privoxy /config/privoxy/config
