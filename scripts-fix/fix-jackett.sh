@@ -1,5 +1,8 @@
 #!/bin/bash
 
+JACKETT_PORT=${TORZNAB_PORT}
+sed -i "s|:9117|:$JACKETT_PORT|g" '/app/launcher/index.html'
+
 mkdir -p /config/jackett \
     && cp -n /static-ubuntu/etc/jackett.json /config/jackett/ServerConfig.json \
     && chmod -R 777 /config/jackett
