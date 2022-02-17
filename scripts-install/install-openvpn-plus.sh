@@ -19,7 +19,6 @@ else
     echo "$(date "+%d.%m.%Y %T") Skip torsocks and privoxy due to build option ${BUILD_OPT}" >> /build.info
 fi
 
-
 # Clean up
 apt -y autoremove \
     && apt -y autoclean \
