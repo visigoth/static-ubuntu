@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SONARR_PORT=${PVR_TV_PORT}
+sed -i "s|:8989|:$SONARR_PORT|g" '/app/launcher/index.html'
+
 mkdir -p /config/sonarr \
     && cp -n /static-ubuntu/etc/sonarr.xml /config/sonarr/config.xml \
     && mkdir -p /data/sonarr/downloads \
