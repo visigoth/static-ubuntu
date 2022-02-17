@@ -5,9 +5,9 @@ apt -y update \
     && apt -y install libicu66
 
 ## Install jackett ##
-JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" | jq -r .tag_name)
+JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" | jq -r .tag_name | cut -d'v' -f 2)
 rm -rf /app/jackett \
-    && curl -sL "https://github.com/Jackett/Jackett/releases/download/${JACKETT_VERSION}/Jackett.Binaries.LinuxAMDx64.tar.gz" -o /tmp/jacket.tar.gz \
+    && curl -sL "https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VERSION}/Jackett.Binaries.LinuxAMDx64.tar.gz" -o /tmp/jacket.tar.gz \
     && mkdir -p /app/jackett \
     && tar xf /tmp/jacket.tar.gz -C /app/jackett --strip-components=1 \
     && rm -f /tmp/jacket.tar.gz \
