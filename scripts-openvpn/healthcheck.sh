@@ -52,22 +52,21 @@ else
         fi
     fi
 
-    pidlist=$(pidof tor)
-    if [ -z "$pidlist" ]
+    if [[ -f "/usr/sbin/tor" ]]
     then
-        if [[ -f "/usr/sbin/tor" ]]
+        pidlist=$(pidof tor)
+        if [ -z "$pidlist" ]
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run tor in background on port $TORSOCKS_PORT"
-            #start-stop-daemon --start --background --name tor --exec /usr/bin/tor -- --hush -f /config/tor/torrc
             tor --hush --runasdaemon 1 -f /config/tor/torrc
         fi
     fi
 
-    pidlist=$(pidof privoxy)
-    if [ -z "$pidlist" ]
+    if [[ -f "/usr/sbin/privoxy" ]]
     then
-        if [[ -f "/usr/sbin/privoxy" ]]
+        pidlist=$(pidof privoxy)
+        if [ -z "$pidlist" ]
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run privoxy in background on port $PRIVOXY_PORT"
