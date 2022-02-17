@@ -2,6 +2,7 @@ SOCKSPort 0.0.0.0:9050
 ExitPolicy reject *:*
 BridgeRelay 0
 
+# Socks policy to only accept connections from local networks
 SOCKSPolicy accept 10.0.0.0/8
 SOCKSPolicy accept 172.16.0.0/12
 SOCKSPolicy accept 192.168.0.0/16
