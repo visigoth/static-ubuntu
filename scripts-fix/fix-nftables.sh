@@ -22,11 +22,12 @@ ETH0_IP=${ETH0_IP:0:$ETH0_IPLEN}
 ETH0_NET="$ETH0_NET0$ETH0_RANGE"
 echo "[info] eth0 IP is $ETH0_IP in network $ETH0_NET"
 
-## Create nftabless.rules ##
-echo '[info] Editing base ruleset'
+## Create nftables.rules ##
+echo '[info] Creating nftables rules'
 rm -f /nftables.rules
 cp -f /static-ubuntu/etc/nftables.raw /nftables.rules
 sed -i "s|_ETH0_NET_|$ETH0_NET|g" '/nftables.rules'
 sed -i "s|_HOST_NETWORK_|${HOST_NETWORK}|g" '/nftables.rules'
 sed -i "s|_OPENVPN_PROTO_|$OPENVPN_PROTO|g" '/nftables.rules'
 sed -i "s|_OPENVPN_PORT_|$OPENVPN_PORT|g" '/nftables.rules'
+echo '[info] Creation complete'
