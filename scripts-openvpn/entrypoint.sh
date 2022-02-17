@@ -34,7 +34,6 @@ then
     echo ''
     echo "[info] Setting up OpenVPN tunnel..."
     source /static-ubuntu/scripts-openvpn/openvpn.sh
-    TUN0_NET=$(ip addr show tun0 | grep inet | awk '{print $2}')
     echo '[info] Tunnel created'
 
     # Enable health check #
