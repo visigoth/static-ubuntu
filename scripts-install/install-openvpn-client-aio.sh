@@ -27,11 +27,13 @@ echo "$(date "+%d.%m.%Y %T") Added tinyproxy version ${TINYPROXY_VERSION}" >> /b
 ## use torless tag to determine whether to install torsocks and privoxy ##
 if [[ ${BUILD_OPT} =~ "torless" ]]
 then
-    echo "[info] Don't install torsocks and privoxy due to build option ${BUILD_OPT}"
+    echo "$(date "+%d.%m.%Y %T") Skip torsocks and privoxy due to build option ${BUILD_OPT}" >> /build.info
 else
-    apt -y install torsocks privoxy
+    apt -y install torsocks
     TORSOCKS_VERSION=$(torsocks --version | cut -d' ' -f 2)
     echo "$(date "+%d.%m.%Y %T") Added torsocks version ${TORSOCKS_VERSION}" >> /build.info
+    
+    apt -y install privoxy
     PRIVOXY_VERSION=$(privoxy --version | cut -d' ' -f 3)
     echo "$(date "+%d.%m.%Y %T") Added privoxy version ${PRIVOXY_VERSION}" >> /build.info
 fi
