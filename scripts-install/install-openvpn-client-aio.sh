@@ -16,7 +16,7 @@ echo "$(date "+%d.%m.%Y %T") Added openvpn version ${OPENVPN_VERSION}" >> /build
 
 # install dante-server
 apt -y install dante-server
-DANTED_VERSION=$(danted -v | cut -d' ' -f 2 | cut -d'v' -f 2)
+DANTED_VERSION=$(danted -v | cut -d' ' -f 2 | cut -c 2-6)
 echo "$(date "+%d.%m.%Y %T") Added dante-server version ${DANTED_VERSION}" >> /build.info
 
 # install tinyproxy
