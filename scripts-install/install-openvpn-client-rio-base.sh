@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Run required install scripts. More complex dependencies run first.##
-source /testdasi/scripts-install/install-openvpn-client-aio.sh
+source /testdasi/scripts-install/install-openvpn-plus.sh
 source /testdasi/scripts-install/install-nzbhydra2.sh
 source /testdasi/scripts-install/install-radarr.sh
 source /testdasi/scripts-install/install-sonarr.sh
