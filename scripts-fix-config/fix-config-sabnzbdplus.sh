@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p /config/sabnzbdplus \
-    && cp -n /testdasi/etc/sabnzbdplus.ini /config/sabnzbdplus/ \
+    && cp -n /static-ubuntu/etc/sabnzbdplus.ini /config/sabnzbdplus/ \
     && mkdir -p /data/sabnzbdplus/watch \
     && mkdir -p /data/sabnzbdplus/incomplete \
     && mkdir -p /data/sabnzbdplus/complete \

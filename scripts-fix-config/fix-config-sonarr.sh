@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p /config/sonarr \
-    && cp -n /testdasi/etc/sonarr.xml /config/sonarr/config.xml \
+    && cp -n /static-ubuntu/etc/sonarr.xml /config/sonarr/config.xml \
     && mkdir -p /data/sonarr/downloads \
     && mkdir -p /data/sonarr/recycle \
     && mkdir -p /data/sonarr/watch \
