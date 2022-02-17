@@ -102,12 +102,12 @@ else
         if [[ -f "/usr/bin/transmission-daemon" ]]
         then
             crashed=$(( $crashed + 1 ))
-            TUN0_NET=$(ip addr show tun0 | grep inet | awk '{print $2}')
-            if [ -z $TUN0_NET ]; then
-                echo "[critical] Tunnel not found. Will not start transmission"
+            TUN0_IP=$(ip addr show tun0 | grep inet | awk '{print $2}' | cut -d'/' -f 1)
+            if [ -z $TUN0_IP ]; then
+                echo "[CRITICAL] Tunnel not found. Will not start transmission"
             else
-                echo "[info] Run transmission-daemon in background, binding to tun0 ($TUN0_NET)"
-                transmission-daemon --config-dir=/config/transmission --bind-address-ipv4=$TUN0_NET
+                echo "[info] Run transmission-daemon in background, binding to tun0 at $TUN0_IP"
+                transmission-daemon --config-dir=/config/transmission --bind-address-ipv4=$TUN0_IP
             fi
         fi
     fi
