@@ -29,22 +29,6 @@ apt -y install tinyproxy
 TINYPROXY_VERSION=$(tinyproxy -v | cut -d' ' -f 2)
 echo "$(date "+%d.%m.%Y %T") Added tinyproxy version ${TINYPROXY_VERSION}" >> /build.info
 
-## add tor and privoxy depending on torless tag ##
-if [[ ${BUILD_OPT} =~ "torless" ]]
-then
-    echo "$(date "+%d.%m.%Y %T") Skip torsocks and privoxy due to build option ${BUILD_OPT}" >> /build.info
-else
-    # torsocks #
-    apt -y install torsocks
-    TOR_VERSION=$(tor --version | cut -d' ' -f 3 | cut -c'1-7')
-    echo "$(date "+%d.%m.%Y %T") Added torsocks version ${TOR_VERSION}" >> /build.info
-    
-    # privoxy #
-    apt -y install privoxy
-    PRIVOXY_VERSION=$(privoxy --version | cut -d' ' -f 3)
-    echo "$(date "+%d.%m.%Y %T") Added privoxy version ${PRIVOXY_VERSION}" >> /build.info
-fi
-
 # Clean up
 apt -y autoremove \
     && apt -y autoclean \
