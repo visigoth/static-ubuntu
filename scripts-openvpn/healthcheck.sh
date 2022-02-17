@@ -92,7 +92,7 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
-            /app/nzbhydra2/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            /app/nzbhydra2/bin/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
         fi
     fi
 
@@ -120,7 +120,7 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run flood in background at $FLOOD_IP:$FLOOD_PORT"
-            start-stop-daemon --start --background --name flood --chdir /usr/bin --exec flood -- --rundir=/config/flood --host=${SERVER_IP} --port=${TORRENT_GUI_PORT}
+            start-stop-daemon --start --background --name flood --chdir /usr/bin --exec /usr/bin/flood -- --rundir=/config/flood --host=${SERVER_IP} --port=${TORRENT_GUI_PORT}
         fi
     fi
 
@@ -142,7 +142,7 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run sonarr in background on port $SONARR_PORT"
-            start-stop-daemon --start --background --name sonarr --chdir /app/sonarr --exec /usr/bin/mono-sonarr -- --debug Sonarr.exe -nobrowser -data=/config/sonarr
+            start-stop-daemon --start --background --name sonarr --chdir /app/sonarr/bin --exec /usr/bin/mono-sonarr -- --debug Sonarr.exe -nobrowser -data=/config/sonarr
         fi
     fi
 
@@ -153,7 +153,7 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run radarr in background on port $RADARR_PORT"
-            start-stop-daemon --start --background --name radarr --chdir /app/radarr --exec /app/radarr/Radarr -- -nobrowser -data=/config/radarr
+            start-stop-daemon --start --background --name radarr --chdir /app/radarr/bin --exec /app/radarr/bin/Radarr -- -nobrowser -data=/config/radarr
         fi
     fi
 
@@ -164,7 +164,7 @@ else
         then
             crashed=$(( $crashed + 1 ))
             echo "[info] Run prowlarr in background on port $PROWLARR_PORT"
-            start-stop-daemon --start --background --name prowlarr --chdir /app/prowlarr --exec /app/prowlarr/Prowlarr -- -nobrowser -data=/config/prowlarr
+            start-stop-daemon --start --background --name prowlarr --chdir /app/prowlarr/bin --exec /app/prowlarr/bin/Prowlarr -- -nobrowser -data=/config/prowlarr
         fi
     fi
 
