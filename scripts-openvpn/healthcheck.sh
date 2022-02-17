@@ -1,7 +1,7 @@
 #!/bin/bash
 
-## No healthcheck if disable_healthcheck is set ##
-if [[ -f "/config/disable_healthcheck" ]]
+## No healthcheck if healthcheck-disable is set ##
+if [[ -f "/config/healthcheck-disable" ]]
 then
     echo '[info] Healthcheck disabled when openvpn is connecting...'
 else
@@ -15,7 +15,7 @@ else
     fi
     
     # Block concurrent runs #
-    touch /config/disable_healthcheck
+    touch /config/healthcheck-disable
 
     # Autoheal #
     crashed=0
@@ -175,9 +175,10 @@ else
     fi
     
     # Remove blockage #
-    rm -f /config/disable_healthcheck
+    rm -f /config/healthcheck-disable
     
-    if [[ -f "/config/disable_error" ]]
+    # No error if healthcheck-no-error is set #
+    if [[ -f "/config/healthcheck-no-error" ]]
     then
         echo ''
     else
