@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PROWLARR_PORT=${INDEXER_PORT}
+sed -i "s|_PROWLARR_PORT_|$PROWLARR_PORT|g" '/nftables.rules'
 sed -i "s|:9696|:$PROWLARR_PORT|g" '/app/launcher/index.html'
 
 mkdir -p /config/prowlarr \
