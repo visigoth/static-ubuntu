@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SAB_PORT_A=${USENET_HTTP_PORT}
+SAB_PORT_B=${USENET_HTTPS_PORT}
+sed -i "s|:8080|:$SAB_PORT_A|g" '/app/launcher/index.html'
+
 mkdir -p /config/sabnzbdplus \
     && cp -n /static-ubuntu/etc/sabnzbdplus.ini /config/sabnzbdplus/ \
     && mkdir -p /data/sabnzbdplus/watch \
