@@ -1,7 +1,4 @@
-SOCKSPort 10.0.0.0:9050
-SOCKSPort 127.0.0.0:9050
-SOCKSPort 192.168.0.0:9050
-SOCKSPort 172.16.0.0:9050
+SOCKSPort 0.0.0.0:9050
 ExitPolicy reject *:*
 BridgeRelay 0
 
