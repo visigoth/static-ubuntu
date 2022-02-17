@@ -21,6 +21,10 @@ fi
 if [[ -f "/usr/sbin/tor" ]]
 then
     source /static-ubuntu/scripts-fix/fix-torsocks.sh
+fi
+
+if [[ -f "/usr/sbin/privoxy" ]]
+then
     source /static-ubuntu/scripts-fix/fix-privoxy.sh
 fi
 
@@ -38,6 +42,10 @@ fi
 if [[ -f "/usr/bin/flood" ]]
 then
     source /static-ubuntu/scripts-fix/fix-flood.sh
+fi
+
+if [[ -f "/usr/bin/transmission-daemon" ]]
+then
     source /static-ubuntu/scripts-fix/fix-transmission.sh
 fi
 
