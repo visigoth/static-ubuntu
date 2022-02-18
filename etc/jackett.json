@@ -3,7 +3,7 @@
   "AllowExternal": true,
   "AdminPassword": null,
   "BlackholeDir": "/data/transmission/watch",
-  "UpdateDisabled": false,
+  "UpdateDisabled": true,
   "UpdatePrerelease": false,
   "BasePathOverride": "",
   "OmdbApiKey": "",
