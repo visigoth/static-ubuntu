@@ -269,11 +269,12 @@ else
     # No error if healthcheck-no-error is set #
     if [[ -f "/config/healthcheck-no-error" ]]
     then
-        echo '[info] Last healthcheck failed, check config folder for more info'
+        echo ''
     else
         # Return exit code for healthcheck #
         if (( $crashed > 0 ))
         then
+            echo '[info] Last healthcheck failed, check config folder for more info'
             exit 1
         else
             exit 0
