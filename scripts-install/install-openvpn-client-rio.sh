@@ -14,9 +14,6 @@ cp -rf /testdasi /static-ubuntu
 # Selectively delete redundant files #
 rm -Rf /static-ubuntu/deprecated
 
-## wipe openvpn etc config ##
-rm -Rf /etc/openvpn
-
 ## dups various executables ##
 # dup mono binary #
 cp /usr/bin/mono /usr/bin/mono-sonarr \
