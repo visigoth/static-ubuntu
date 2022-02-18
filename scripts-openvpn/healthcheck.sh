@@ -274,7 +274,7 @@ else
         # Return exit code for healthcheck #
         if (( $crashed > 0 ))
         then
-            echo '[info] Last healthcheck failed, check config folder for more info'
+            touch "/config/debug-healthcheck-failure-at-$(date "+%d.%m.%Y_%T")"
             exit 1
         else
             exit 0
