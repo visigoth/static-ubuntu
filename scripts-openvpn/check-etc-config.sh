@@ -11,6 +11,7 @@ then
         echo '[warn] OpenVPN config file detected in /etc/openvpn'
         echo '[warn] Please remap container /config to a host folder and place openvpn config files under [host folder]/openvpn'
         echo '[info] Copying config from /etc to /config'
+        mkdir -p /config
         cp -rn /etc/openvpn /config/
         echo '[info] Complete'
     fi
