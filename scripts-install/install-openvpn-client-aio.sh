@@ -14,6 +14,9 @@ cp -rf /testdasi /static-ubuntu
 # Selectively delete redundant files #
 rm -Rf /static-ubuntu/deprecated
 
+# wipe openvpn etc default config again just to be sure #
+rm -Rf /etc/openvpn
+
 ## chmod scripts ##
 chmod +x /*.sh
 chmod +x /static-ubuntu/scripts-debug/*.sh
