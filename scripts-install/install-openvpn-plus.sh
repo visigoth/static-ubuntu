@@ -6,6 +6,8 @@ apt -y update \
 
 ## openvpn ##
 apt -y install openvpn
+# wipe openvpn etc default config to prevent dup #
+rm -Rf /etc/openvpn
 OPENVPN_VERSION=$(openvpn --version | grep 'linux-gnu' | cut -d' ' -f 2)
 echo "$(date "+%d.%m.%Y %T") Added openvpn version ${OPENVPN_VERSION}" >> /build.info
 
