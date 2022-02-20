@@ -6,6 +6,7 @@ apt -y update \
 
 ## openvpn ##
 apt -y install openvpn
+systemctl disable openvpn
 # wipe openvpn etc default config to prevent dup #
 rm -Rf /etc/openvpn
 OPENVPN_VERSION=$(openvpn --version | grep 'linux-gnu' | cut -d' ' -f 2)
