@@ -13,6 +13,3 @@ source /testdasi/scripts-install/install-sabnzbdplus.sh
 
 ## Finally add web launcher ##
 source /testdasi/scripts-install/install-launcher.sh
-
-## wipe openvpn etc config ##
-rm -Rf /etc/openvpn
