@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -f "/openvpn-only" ]]
+then
+    source /static-ubuntu/scripts-openvpn/check-etc-config.sh
+fi
+
 ## Only run process if ovpn config found ##
 if [[ -f "/config/openvpn/openvpn.ovpn" ]]
 then
