@@ -38,7 +38,9 @@ then
     # OpenVPN #
     echo ''
     echo "[info] Setting up OpenVPN tunnel..."
+    touch /config/openvpn-connecting
     source /static-ubuntu/scripts-openvpn/openvpn.sh
+    rm -f /config/openvpn-connecting
     echo '[info] Tunnel created'
 
     # Enable health check #
