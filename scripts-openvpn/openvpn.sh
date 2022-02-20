@@ -6,7 +6,7 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 
-echo "[info] Allow DnS-over-TLS for openvpn to lookup VPN server"
+echo "[info] Allow DnS for openvpn to lookup VPN server"
 echo 'nameserver 127.2.2.2' > /etc/resolv.conf
 nft add rule ip filter INPUT  tcp sport $DOT_PORT counter accept
 nft add rule ip filter OUTPUT tcp dport $DOT_PORT counter accept
@@ -24,7 +24,7 @@ do
 done
 echo "[info] Your VPN public IP is $iphiden"
 
-echo "[info] Block DnS-over-TLS to force traffic through tunnel"
+echo "[info] Block DnS to force traffic through tunnel"
 rulehandle="$(nft list table filter -a | grep "tcp sport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter INPUT handle $rulehandle
 rulehandle="$(nft list table filter -a | grep "tcp dport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
