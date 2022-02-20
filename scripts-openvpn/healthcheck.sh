@@ -3,7 +3,11 @@
 ## No healthcheck if healthcheck-disable is set ##
 if [[ -f "/config/healthcheck-disable" ]]
 then
-    echo '[info] Healthcheck disabled when openvpn is connecting...'
+    # return unhealthy state if openvpn is still connecting #
+    if [[ -f "/config/openvpn-connecting" ]]
+    then
+        exit 1
+    fi
 else
     # Critical - kill docker if openvpn crashed #
     pidlist=$(pidof openvpn)
