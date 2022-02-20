@@ -10,6 +10,8 @@ echo "[info] Allow DnS-over-TLS for openvpn to lookup VPN server"
 echo 'nameserver 127.2.2.2' > /etc/resolv.conf
 nft add rule ip filter INPUT  tcp sport $DOT_PORT counter accept
 nft add rule ip filter OUTPUT tcp dport $DOT_PORT counter accept
+nft add rule ip filter INPUT  tcp sport $DNS_PORT counter accept
+nft add rule ip filter OUTPUT tcp dport $DNS_PORT counter accept
 
 echo "[info] Connecting to VPN on port $OPENVPN_PORT with proto $OPENVPN_PROTO..."
 openvpn --daemon --cd /config/openvpn --config openvpn.ovpn
@@ -26,6 +28,10 @@ echo "[info] Block DnS-over-TLS to force traffic through tunnel"
 rulehandle="$(nft list table filter -a | grep "tcp sport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter INPUT handle $rulehandle
 rulehandle="$(nft list table filter -a | grep "tcp dport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
+nft delete rule filter OUTPUT handle $rulehandle
+rulehandle="$(nft list table filter -a | grep "tcp sport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
+nft delete rule filter INPUT handle $rulehandle
+rulehandle="$(nft list table filter -a | grep "tcp dport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter OUTPUT handle $rulehandle
 
 echo "[info] Change DNS servers to ${DNS_SERVERS}"
