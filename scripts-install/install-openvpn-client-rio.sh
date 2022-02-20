@@ -27,6 +27,11 @@ cp /usr/bin/python3 /usr/bin/python3-launcher \
 cp /usr/bin/python2 /usr/bin/python2-launcher \
     && chmod +x /usr/bin/python2-launcher
 
+# Improve comptability with old versions #
+rm -Rf /etc/openvpn
+cp -n /static-ubuntu/scripts-openvpn/entrypoint.sh /
+cp -n /static-ubuntu/scripts-openvpn/healthcheck.sh /
+
 ## chmod scripts ##
 chmod +x /app/radarr/Radarr
 chmod +x /app/prowlarr/Prowlarr
