@@ -9,10 +9,11 @@ else
 fi
 
 ## Make copy of static folder ##
-cp -rf /testdasi /static-ubuntu
-
-# Selectively delete redundant files #
-rm -Rf /static-ubuntu/deprecated
+mkdir -p /static-ubuntu
+cp -rf /testdasi/etc /static-ubuntu/
+cp -rf /testdasi/scripts-debug /static-ubuntu/
+cp -rf /testdasi/scripts-fix /static-ubuntu/
+cp -rf /testdasi/scripts-openvpn /static-ubuntu/
 
 # Improve comptability with old versions #
 rm -Rf /etc/openvpn
