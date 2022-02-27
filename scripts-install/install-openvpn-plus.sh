@@ -20,18 +20,21 @@ echo "$(date "+%d.%m.%Y %T") Added nftables version ${NFT_VERSION}" >> /build.in
 ## stubby ##
 apt -y install stubby
 STUBBY_VERSION=$(stubby -V)
-systemctl disable stubby
+systemctl disable stubby \
+    && rm -Rf /etc/stubby
 echo "$(date "+%d.%m.%Y %T") Added stubby version ${STUBBY_VERSION}" >> /build.info
 
 ## dante-server ##
 apt -y install dante-server
-systemctl disable danted
+systemctl disable danted \
+    && rm -f /etc/danted.conf
 DANTED_VERSION=$(danted -v | cut -d' ' -f 2 | cut -d'v' -f 2 | cut -c'1-5')
 echo "$(date "+%d.%m.%Y %T") Added dante-server version ${DANTED_VERSION}" >> /build.info
 
 ## tinyproxy ##
 apt -y install tinyproxy
-systemctl disable tinyproxy
+systemctl disable tinyproxy \
+    && rm -Rf /etc/tinyproxy
 TINYPROXY_VERSION=$(tinyproxy -v | cut -d' ' -f 2)
 echo "$(date "+%d.%m.%Y %T") Added tinyproxy version ${TINYPROXY_VERSION}" >> /build.info
 
