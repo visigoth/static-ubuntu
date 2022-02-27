@@ -8,6 +8,9 @@ else
     source /testdasi/scripts-install/install-tor.sh
 fi
 
+## Install PIA PF script ##
+source /testdasi/scripts-install/install-pia-script.sh
+
 ## Make copy of static folder ##
 mkdir -p /static-ubuntu
 cp -rf /testdasi/etc /static-ubuntu/
