@@ -7,7 +7,8 @@ apt -y update \
 
 ## Install torrent client ##
 apt -y install transmission-daemon
-systemctl disable transmission-daemon
+systemctl disable transmission-daemon \
+    && rm -Rf /etc/transmission-daemon/*
 TRANSMISSION_VERSION=$(dpkg -s transmission-daemon | grep 'Version' | cut -d' ' -f 2)
 
 ## New fork of flood at https://github.com/jesec/flood ##
