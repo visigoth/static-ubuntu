@@ -25,6 +25,7 @@ then
     # Run stubby and use it to check external ISP IP #
     echo ''
     echo "[info] Run stubby in background on port $DNS_PORT"
+    kill $(pidof stubby)
     stubby -g -C /config/stubby/stubby.yml
     ipnaked=$(dig +short myip.opendns.com @208.67.222.222)
     echo "[warn] Your ISP public IP is $ipnaked"
