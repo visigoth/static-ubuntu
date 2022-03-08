@@ -26,6 +26,8 @@ cp /usr/bin/mono /usr/bin/mono-sonarr \
 # dup python3 binary #
 cp /usr/bin/python3 /usr/bin/python3-launcher \
     && chmod +x /usr/bin/python3-launcher
+cp /usr/bin/python3 /usr/bin/python3-nzbhydra2 \
+    && chmod +x /usr/bin/python3-nzbhydra2
 
 # dup python2 binary #
 cp /usr/bin/python2 /usr/bin/python2-launcher \
