@@ -125,7 +125,8 @@ else
         fi
     fi
 
-    pidlist=$(pgrep nzbhydra2)
+    #pidlist=$(pgrep nzbhydra2)
+    pidlist=$(pidof python3-nzbhydra2)
     if [ -z "$pidlist" ]
     then
         if [[ -f "/app/nzbhydra2/package_info" ]]
@@ -138,7 +139,8 @@ else
                 touch "/config/healthcheck-failure-nzbhydra2-at-$(date "+%d.%m.%Y_%T")"
             fi
             echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
-            /app/nzbhydra2/bin/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            #/app/nzbhydra2/bin/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
         fi
     fi
 
