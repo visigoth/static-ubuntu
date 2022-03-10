@@ -1,15 +1,15 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt-get -y update \
+apt -y update \
     && apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
 
 ## Install telegraf + influxdb from repo ##
 curl -sOL "https://repos.influxdata.com/influxdb.key"
 apt-key add influxdb.key
 echo "deb https://repos.influxdata.com/ubuntu focal stable" | tee /etc/apt/sources.list.d/influxdb.list
-apt-get -y update \
-    && apt-get -y install telegraf influxdb
+apt -y update \
+    && apt -y install telegraf influxdb
 systemctl daemon-reload \
     && systemctl disable influxdb
 # clean config #
