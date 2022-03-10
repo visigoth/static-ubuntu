@@ -13,7 +13,8 @@ source /testdasi/scripts-install/install-grafana.sh
 
 ## Install dependencies ##
 #apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
-apt -y install lm-sensors smartmontools ipmitool
+apt -y update \
+    && apt -y install lm-sensors smartmontools ipmitool
 
 # add telegraf repo
 #wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
