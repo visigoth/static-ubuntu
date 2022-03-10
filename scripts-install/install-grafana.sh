@@ -10,8 +10,6 @@ apt-key add gpg.key
 echo "deb https://packages.grafana.com/oss/deb stable main" | tee -a /etc/apt/sources.list.d/grafana.list
 apt -y update \
     && apt -y install grafana
-systemctl daemon-reload \
-    && systemctl disable grafana-server
 # clean config #
 rm -f /etc/default/grafana-server \
     && touch /etc/default/grafana-server \
