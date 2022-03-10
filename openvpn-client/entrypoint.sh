@@ -2,7 +2,7 @@
 
 if [[ -f "/openvpn-only" ]]
 then
-    source /static-ubuntu/scripts-openvpn/check-etc-config.sh
+    source /static-ubuntu/openvpn-client/check-etc-config.sh
 fi
 
 ## Only run process if ovpn config found ##
@@ -19,7 +19,7 @@ then
     # Initilise apps #
     echo ''
     echo '[info] Initialisation started...'
-    source /static-ubuntu/scripts-openvpn/initialise.sh
+    source /static-ubuntu/openvpn-client/initialise.sh
     echo '[info] Initialisation complete'
 
     # Run stubby and use it to check external ISP IP #
@@ -33,14 +33,14 @@ then
     # nftables #
     echo ''
     echo '[info] Setting up nftables rules...'
-    source /static-ubuntu/scripts-openvpn/nftables.sh
+    source /static-ubuntu/openvpn-client/nftables.sh
     echo '[info] All rules created'
 
     # OpenVPN #
     echo ''
     echo "[info] Setting up OpenVPN tunnel..."
     touch /config/openvpn-connecting
-    source /static-ubuntu/scripts-openvpn/openvpn.sh
+    source /static-ubuntu/openvpn-client/openvpn.sh
     rm -f /config/openvpn-connecting
     echo '[info] Tunnel created'
 
@@ -54,7 +54,7 @@ then
     echo ''
     echo "[info] Runing apps..."
     touch /config/healthcheck-no-error
-    source /static-ubuntu/scripts-openvpn/healthcheck.sh
+    source /static-ubuntu/openvpn-client/healthcheck.sh
     rm -f /config/healthcheck-no-error
     echo "[info] All done"
 

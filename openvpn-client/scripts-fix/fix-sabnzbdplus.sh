@@ -7,7 +7,7 @@ sed -i "s|_SAB_PORT_B_|$SAB_PORT_B|g" '/nftables.rules'
 sed -i "s|:8080|:$SAB_PORT_A|g" '/app/launcher/index.html'
 
 mkdir -p /config/sabnzbdplus \
-    && cp -n /static-ubuntu/etc/sabnzbdplus.ini /config/sabnzbdplus/ \
+    && cp -n /static-ubuntu/openvpn-client/etc/sabnzbdplus.ini /config/sabnzbdplus/ \
     && mkdir -p /data/sabnzbdplus/watch \
     && mkdir -p /data/sabnzbdplus/incomplete \
     && mkdir -p /data/sabnzbdplus/complete \

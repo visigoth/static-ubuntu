@@ -12,4 +12,4 @@ echo '[info] Apply rules'
 nft -f /nftables.rules
 
 ## Quick block test ##
-source /static-ubuntu/scripts-openvpn//quick_block_test.sh
+source /static-ubuntu/openvpn-client/quick_block_test.sh

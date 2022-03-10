@@ -13,10 +13,8 @@ source /testdasi/scripts-install/install-pia-script.sh
 
 ## Make copy of static folder ##
 mkdir -p /static-ubuntu
-cp -rf /testdasi/etc /static-ubuntu/
 cp -rf /testdasi/scripts-debug /static-ubuntu/
-cp -rf /testdasi/scripts-fix /static-ubuntu/
-cp -rf /testdasi/scripts-openvpn /static-ubuntu/
+cp -rf /testdasi/openvpn-client /static-ubuntu/
 
 ## dups various executables ##
 # dup mono binary #
@@ -38,6 +36,5 @@ chmod +x /app/radarr/Radarr
 chmod +x /app/prowlarr/Prowlarr
 chmod +x /*.sh
 chmod +x /static-ubuntu/scripts-debug/*.sh
-chmod +x /static-ubuntu/scripts-fix/*.sh
-chmod +x /static-ubuntu/scripts-install/*.sh
-chmod +x /static-ubuntu/scripts-openvpn/*.sh
+chmod +x /static-ubuntu/openvpn-client/*.sh
+chmod +x /static-ubuntu/openvpn-client/scripts-fix/*.sh

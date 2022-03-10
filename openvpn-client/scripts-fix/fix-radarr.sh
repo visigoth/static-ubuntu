@@ -5,7 +5,7 @@ sed -i "s|_RADARR_PORT_|$RADARR_PORT|g" '/nftables.rules'
 sed -i "s|:7878|:$RADARR_PORT|g" '/app/launcher/index.html'
 
 mkdir -p /config/radarr \
-    && cp -n /static-ubuntu/etc/radarr.xml /config/radarr/config.xml \
+    && cp -n /static-ubuntu/openvpn-client/etc/radarr.xml /config/radarr/config.xml \
     && mkdir -p /data/radarr/downloads \
     && mkdir -p /data/radarr/recycle \
     && mkdir -p /data/radarr/watch \
