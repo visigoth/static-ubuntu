@@ -10,9 +10,6 @@ apt-key add influxdb.key
 echo "deb https://repos.influxdata.com/ubuntu focal stable" | tee /etc/apt/sources.list.d/influxdb.list
 apt -y update \
     && apt -y install telegraf influxdb
-systemctl daemon-reload \
-    && systemctl disable influxdb
-# clean config #
 rm -rf /etc/telegraf
 rm -rf /etc/influxdb
 INFLUXDB_VERSION=$(influxd version | cut -d' ' -f 2 | cut -d'v' -f 2)
