@@ -5,6 +5,7 @@
 #    && apt -y install lm-sensors smartmontools ipmitool hddtemp
 #rm -f /etc/hddtemp.db
 
+apt -y update
 source /testdasi/scripts-install/install-grafana.sh
 source /testdasi/scripts-install/install-influxdb-telegraf.sh
 source /testdasi/scripts-install/install-loki-promtail.sh
