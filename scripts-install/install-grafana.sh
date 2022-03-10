@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
+apt-get -y update \
+    && apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
 
 ## Install grafana from repo ##
 curl -sOL "https://packages.grafana.com/gpg.key" | apt-key add -
