@@ -21,9 +21,10 @@ systemctl daemon-reload \
     && systemctl disable grafana-server
 # clean config #
 rm -f /etc/default/grafana-server \
-    && touch /etc/default/grafana-server
+    && touch /etc/default/grafana-server \
+    && rm -rf /etc/grafana
 GRAFANA_VERSION=$(grafana-server -v | cut -d' ' -f 2)
-echo "$(date "+%d.%m.%Y %T") Added grafana-server version ${GRAFANA_VERSION}" >> /build.info
+echo "$(date "+%d.%m.%Y %T") Added Grafana version ${GRAFANA_VERSION}" >> /build.info
 
 ## Clean up ##
 apt -y autoremove \
