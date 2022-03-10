@@ -4,8 +4,7 @@
 apt-get -y update \
     && apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
 
-## Install grafana from repo ##
-# add telegraf repo
+## Install telegraf + influxdb from repo ##
 curl -sOL "https://repos.influxdata.com/influxdb.key" | apt-key add -
 echo "deb https://repos.influxdata.com/ubuntu focal stable" | tee /etc/apt/sources.list.d/influxdb.list
 apt-get -y update \
