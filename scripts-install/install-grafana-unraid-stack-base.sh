@@ -1,26 +1,25 @@
 #!/bin/bash
 
-## Install dependencies ##
-apt -y update \
-    && apt -y install gnupg dirmngr ca-certificates apt-transport-https
-
 ## Fix locales and tzdata to prevent tzdata stopping installation ##
-apt -y install locales tzdata
+apt -y update \
+    && apt -y install locales tzdata
 locale-gen 'en_GB.UTF-8' \
     && dpkg-reconfigure --frontend=noninteractive locales
 ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
     && echo 'Europe/London' > /etc/timezone \
     && dpkg-reconfigure --frontend=noninteractive tzdata
 
-# install more packages
-apt-get -y update \
-    && apt-get -y install wget apt-transport-https software-properties-common gnupg gnupg2 gnupg1 lm-sensors smartmontools ipmitool curl unzip jq
+## Install dependencies ##
+apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
+apt -y install lm-sensors smartmontools ipmitool
 
 # add grafana repo
-wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+#wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+curl -sOL "https://packages.grafana.com/gpg.key" | apt-key add -
 echo "deb https://packages.grafana.com/oss/deb stable main" | tee -a /etc/apt/sources.list.d/grafana.list
 # add telegraf repo
-wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
+#wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
+curl -sOL "https://repos.influxdata.com/influxdb.key" | apt-key add -
 echo "deb https://repos.influxdata.com/debian buster stable" | tee /etc/apt/sources.list.d/influxdb.list
 
 ## Fix locales and tzdata to prevent tzdata stopping installation ##
