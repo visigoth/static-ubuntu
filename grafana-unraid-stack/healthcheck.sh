@@ -21,6 +21,7 @@ else
             crashed=$(( $crashed + 1 ))
             touch "/config/healthcheck-failure-influxd-at-$(date "+%d.%m.%Y_%T")"
         fi
+        echo "[info] Run influxdb as service on port $INFLUXDB_HTTP_PORT"
         service influxdb start
     fi
 
@@ -34,6 +35,7 @@ else
             crashed=$(( $crashed + 1 ))
             touch "/config/healthcheck-failure-loki-at-$(date "+%d.%m.%Y_%T")"
         fi
+        echo "[info] Run loki as daemon on port $LOKI_PORT"
         start-stop-daemon --start -b --exec /usr/sbin/loki -- -config.file=/config/loki/loki-local-config.yaml
     fi
 
@@ -49,6 +51,7 @@ else
                 crashed=$(( $crashed + 1 ))
                 touch "/config/healthcheck-failure-hddtemp-at-$(date "+%d.%m.%Y_%T")"
             fi
+            echo "[info] Running hddtemp as daemon due to USE_HDDTEMP set to $USE_HDDTEMP"
             hddtemp --quiet --daemon --file=/config/hddtemp/hddtemp.db --listen='127.0.0.1' --port=7634 /rootfs/dev/disk/by-id/ata*
         fi
     fi
@@ -63,6 +66,7 @@ else
             crashed=$(( $crashed + 1 ))
             touch "/config/healthcheck-failure-telegraf-at-$(date "+%d.%m.%Y_%T")"
         fi
+        echo "[info] Run telegraf as service"
         service telegraf start
     fi
     
@@ -76,6 +80,7 @@ else
             crashed=$(( $crashed + 1 ))
             touch "/config/healthcheck-failure-promtail-at-$(date "+%d.%m.%Y_%T")"
         fi
+        echo "[info] Run promtail as daemon on port $PROMTAIL_PORT"
         start-stop-daemon --start -b --exec /usr/sbin/promtail -- -config.file=/config/promtail/promtail.yml
     fi
     
@@ -89,6 +94,7 @@ else
             crashed=$(( $crashed + 1 ))
             touch "/config/healthcheck-failure-grafana-at-$(date "+%d.%m.%Y_%T")"
         fi
+        echo "[info] Run grafana as service on port $GRAFANA_PORT"
         service grafana-server start
     fi
     
