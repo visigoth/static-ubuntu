@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ## Install dependencies ##
-apt -y update \
-    && apt -y install lm-sensors smartmontools ipmitool hddtemp
-rm -f /etc/hddtemp.db
+#apt -y update \
+#    && apt -y install lm-sensors smartmontools ipmitool hddtemp
+#rm -f /etc/hddtemp.db
 
 source /testdasi/scripts-install/install-grafana.sh
 source /testdasi/scripts-install/install-influxdb-telegraf.sh
