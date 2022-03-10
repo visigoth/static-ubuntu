@@ -7,7 +7,9 @@
 
 apt -y update
 source /testdasi/scripts-install/install-grafana.sh
+apt -y update
 source /testdasi/scripts-install/install-influxdb-telegraf.sh
+apt -y update
 source /testdasi/scripts-install/install-loki-promtail.sh
 
 # clean up
