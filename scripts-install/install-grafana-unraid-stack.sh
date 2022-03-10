@@ -13,3 +13,4 @@ cp /static-ubuntu/grafana-unraid-stack/init.d/* /etc/init.d/
 ## chmod ##
 chmod +x /*.sh
 chmod +x /etc/init.d/*
+chmod +x /static-ubuntu/grafana-unraid-stack/*.sh
