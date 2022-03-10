@@ -4,10 +4,11 @@
 apt -y update \
     && curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt -y install -y nodejs
+mkdir -p /etc/init.d.disabled
 
 ## Install torrent client ##
 apt -y install transmission-daemon
-systemctl disable transmission-daemon \
+mv /etc/init.d/transmission-daemon /etc/init.d.disabled/ \
     && rm -Rf /etc/transmission-daemon/*
 TRANSMISSION_VERSION=$(dpkg -s transmission-daemon | grep 'Version' | cut -d' ' -f 2)
 
