@@ -3,14 +3,14 @@
 # Initilise apps #
 echo ''
 echo '[info] Initialisation started...'
-source static-ubuntu/grafana-unraid-stack/initialise.sh
+source /static-ubuntu/grafana-unraid-stack/initialise.sh
 echo '[info] Initialisation complete'
 
 # Run apps #
 echo ''
 echo "[info] Runing apps..."
 touch /config/healthcheck-no-error
-source /static-ubuntu/scripts-openvpn/healthcheck.sh
+source /static-ubuntu/grafana-unraid-stack/healthcheck.sh
 rm -f /config/healthcheck-no-error
 echo "[info] All done"
 
