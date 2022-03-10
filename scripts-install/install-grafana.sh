@@ -5,7 +5,8 @@ apt-get -y update \
     && apt -y install gnupg gnupg1 gnupg2 dirmngr ca-certificates apt-transport-https software-properties-common
 
 ## Install grafana from repo ##
-curl -sOL "https://packages.grafana.com/gpg.key" | apt-key add -
+curl -sOL "https://packages.grafana.com/gpg.key"
+apt-key add gpg.key
 echo "deb https://packages.grafana.com/oss/deb stable main" | tee -a /etc/apt/sources.list.d/grafana.list
 apt-get -y update \
     && apt-get -y install grafana
