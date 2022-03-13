@@ -4,13 +4,13 @@
 if [[ -f "/config/healthcheck-disable" ]]
 then
     touch /config/healthcheck-disable
-else    
+else
     # Block concurrent runs #
     touch /config/healthcheck-disable
 
     # Autoheal #
     crashed=0
-    
+
     pidlist=$(pgrep docker)
     if [ -z "$pidlist" ]
     then
@@ -27,7 +27,7 @@ else
 
     # Remove blockage #
     rm -f /config/healthcheck-disable
-    
+
     # No error if healthcheck-no-error is set #
     if [[ -f "/config/healthcheck-no-error" ]]
     then
