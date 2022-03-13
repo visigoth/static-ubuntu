@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install apt-utils
+    && apt -y install apt-utils git
 
 ## Install docker ##
 curl -sSL https://get.docker.com | sh
