@@ -9,6 +9,8 @@ curl -sSL https://get.docker.com | sh
 DOCKER_VERSION=$(docker version | grep Version | tr -s " " | cut -d" " -f 3)
 echo "$(date "+%d.%m.%Y %T") Added docker version ${DOCKER_VERSION}" >> /build.info
 
+usermod -aG docker root
+
 # Clean up
 apt -y autoremove \
     && apt -y autoclean \
