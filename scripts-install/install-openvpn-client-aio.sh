@@ -17,6 +17,11 @@ then
     source /testdasi/scripts-install/install-flood-transmission.sh
     source /testdasi/scripts-install/install-sabnzbdplus.sh
     source /testdasi/scripts-install/install-launcher.sh
+    # dup python3 binary #
+    cp /usr/bin/python3 /usr/bin/python3-launcher \
+        && chmod +x /usr/bin/python3-launcher
+    cp /usr/bin/python3 /usr/bin/python3-nzbhydra2 \
+        && chmod +x /usr/bin/python3-nzbhydra2
 else
     echo "$(date "+%d.%m.%Y %T") Skip plus pack due to build option ${BUILD_OPT}" >> /build.info
 fi
