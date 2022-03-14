@@ -139,8 +139,19 @@ else
                 touch "/config/healthcheck-failure-nzbhydra2-at-$(date "+%d.%m.%Y_%T")"
             fi
             echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
-            #/app/nzbhydra2/bin/nzbhydra2 --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
-            python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            ARCHI=$(uname -m)
+            if [[ $ARCHI =~ "armv7l" ]]
+            then
+                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-armhf/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            elif [[ $ARCHI =~ "aarch64" ]]
+            then
+                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-arm64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            elif [[ $ARCHI =~ "x86_64" ]]
+            then
+                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            else
+                touch "/config/debug-ARCHI_is_$ARCHI-$(date "+%d.%m.%Y_%T")"
+            fi
         fi
     fi
 

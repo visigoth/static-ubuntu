@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install libicu66 libmediainfo0v5 sqlite3
+    && apt -y install libicu66 libmediainfo0v5 sqlite3 curl jq
     
 ## Install Radarr ##
 RADARR_BRANCH="master"

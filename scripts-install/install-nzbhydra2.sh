@@ -5,7 +5,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install openjdk-11-jre-headless python3
+    && apt -y install openjdk-11-jre-headless python3 curl jq
 
 ## Install nzbhydra2 ##
 NZBHYDRA2_VERSION=$(curl -sX GET "https://api.github.com/repos/theotherp/nzbhydra2/releases/latest" | jq -r .tag_name | cut -d'v' -f 2)

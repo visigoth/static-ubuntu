@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install libicu66 sqlite3
+    && apt -y install libicu66 sqlite3 curl jq
 
 ## Install Prowlarr ##
 PROWLARR_BRANCH="develop"

@@ -10,12 +10,12 @@ if [[ ${TARGETPLATFORM} =~ "arm64" ]]
 then
     DURL="https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VERSION}/Jackett.Binaries.LinuxARM64.tar.gz"
 elif [[ ${TARGETPLATFORM} =~ "amd64" ]]
-then 
+then
     DURL="https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VERSION}/Jackett.Binaries.LinuxAMDx64.tar.gz"
 elif [[ ${TARGETPLATFORM} =~ "arm/v7" ]]
 then
     DURL="https://github.com/Jackett/Jackett/releases/download/v${JACKETT_VERSION}/Jackett.Binaries.LinuxARM32.tar.gz"
-else 
+else
     DURL="ERROR"
 fi
 
