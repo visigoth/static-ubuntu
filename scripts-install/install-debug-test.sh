@@ -2,7 +2,7 @@
 
 ## Install dependencies ##
 apt -y update \
-    && apt -y install libicu66
+    && apt -y install libicu66 curl jq
 
 ## Set download URL ##
 JACKETT_VERSION=$(curl -sX GET "https://api.github.com/repos/Jackett/Jackett/releases/latest" | jq -r .tag_name | cut -d'v' -f 2)
