@@ -16,6 +16,7 @@ then
     source /testdasi/scripts-install/install-nzbhydra2.sh
     source /testdasi/scripts-install/install-flood-transmission.sh
     source /testdasi/scripts-install/install-sabnzbdplus.sh
+    source /testdasi/scripts-install/install-launcher.sh
 else
     echo "$(date "+%d.%m.%Y %T") Skip plus pack due to build option ${BUILD_OPT}" >> /build.info
 fi
