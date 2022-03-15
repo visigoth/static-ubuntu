@@ -1,15 +1,13 @@
 #!/bin/bash
 
-## add tor and privoxy depending on torless build opt ##
+## add onion pack depending on torless build opt ##
 if [[ ${BUILD_OPT} =~ "torless" ]]
 then
-    echo "$(date "+%d.%m.%Y %T") Skip torsocks and privoxy due to build option ${BUILD_OPT}" >> /build.info
+    echo "$(date "+%d.%m.%Y %T") Skip onion pack due to build option ${BUILD_OPT}" >> /build.info
 else
+    echo "$(date "+%d.%m.%Y %T") Adding onion pack due to build option ${BUILD_OPT}" >> /build.info
     source /testdasi/scripts-install/install-tor.sh
 fi
-
-## Install PIA PF script ##
-source /testdasi/scripts-install/install-pia-script.sh
 
 ## Make copy of static folder ##
 mkdir -p /static-ubuntu

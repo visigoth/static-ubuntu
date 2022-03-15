@@ -29,9 +29,6 @@ else
     echo "$(date "+%d.%m.%Y %T") Skip plus pack due to build option ${BUILD_OPT}" >> /build.info
 fi
 
-## Install PIA PF script ##
-source /testdasi/scripts-install/install-pia-script.sh
-
 ## Make copy of static folder ##
 mkdir -p /static-ubuntu
 cp -rf /testdasi/scripts-debug /static-ubuntu/

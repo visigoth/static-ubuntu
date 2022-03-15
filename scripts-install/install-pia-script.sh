@@ -4,7 +4,7 @@
 apt -y update \
     && apt -y install curl jq unzip
 
-## Install launcher ##
+## Install PIA script ##
 rm -rf /app/pia-script \
     && mkdir -p /temp \
     && cd /temp \
