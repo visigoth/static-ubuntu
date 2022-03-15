@@ -20,18 +20,18 @@ else
 fi
 
 ## Install jackett ##
-if [[ ${DURL} =~ "ERROR" ]]
+if [[ $DURL =~ "ERROR" ]]
 then
     echo "$(date "+%d.%m.%Y %T") ERROR - no supported platform found for jackett" >> /build.info
-else 
+else
     rm -rf /app/jackett \
-    && curl -sL "${DURL}" -o /tmp/jacket.tar.gz \
-    && mkdir -p /app/jackett \
-    && tar xf /tmp/jacket.tar.gz -C /app/jackett --strip-components=1 \
-    && rm -f /tmp/jacket.tar.gz \
-    && chmod +x /app/jackett/jackett \
-    && chown -R root:root /app/jackett \
-    && echo "$(date "+%d.%m.%Y %T") Added jackett version ${JACKETT_VERSION} for ${TARGETPLATFORM}" >> /build.info
+        && curl -sL "$DURL" -o /tmp/jacket.tar.gz \
+        && mkdir -p /app/jackett \
+        && tar xf /tmp/jacket.tar.gz -C /app/jackett --strip-components=1 \
+        && rm -f /tmp/jacket.tar.gz \
+        && chmod +x /app/jackett/jackett \
+        && chown -R root:root /app/jackett \
+        && echo "$(date "+%d.%m.%Y %T") Added jackett version ${JACKETT_VERSION} for ${TARGETPLATFORM}" >> /build.info
 fi
 
 ## Debug ##
