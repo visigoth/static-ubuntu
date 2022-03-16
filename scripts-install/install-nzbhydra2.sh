@@ -20,7 +20,7 @@ rm -rf /app/nzbhydra2/bin \
 
 ## Set package info and build info ##
 echo "ReleaseType=Release\nPackageVersion=${NZBHYDRA2_VERSION}\nPackageAuthor=[testdasi](https://github.com/testdasi)" > /app/nzbhydra2/package_info
-echo "$(date "+%d.%m.%Y %T") Added nzbhydra2 binary version ${NZBHYDRA2_VERSION}" >> /build.info
+echo "$(date "+%d.%m.%Y %T") Added nzbhydra2 version ${NZBHYDRA2_VERSION}" >> /build.info
 
 ## Clean up ##
 apt -y autoremove \
