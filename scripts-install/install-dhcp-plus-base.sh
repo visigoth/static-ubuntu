@@ -1,12 +1,17 @@
 #!/bin/bash
 
-## Install dependencies ##
+## Install depedencies and fix locales and tzdata to prevent tzdata stopping installation ##
 apt -y update \
-    && apt -y install wget tee gnupg1 apt-transport-https
+    && apt -y install wget gnupg1 apt-transport-https locales tzdata
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
+    && echo 'Europe/London' > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Add depot ##
-echo 'deb https://download.webmin.com/download/repository sarge contrib' | sudo tee -a /etc/apt/sources.list
-wget -q -O- http://www.webmin.com/jcameron-key.asc | sudo apt-key add
+echo 'deb https://download.webmin.com/download/repository sarge contrib' | tee -a /etc/apt/sources.list
+wget -q -O- http://www.webmin.com/jcameron-key.asc | apt-key add
 
 ## Install packages ##
 apt update -y \
