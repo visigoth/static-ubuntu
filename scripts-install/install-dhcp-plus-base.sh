@@ -16,7 +16,7 @@ wget -q -O- http://www.webmin.com/jcameron-key.asc | apt-key add
 
 ## Install packages ##
 apt update -y \
-    && apt install -y isc-dhcp-server webmin perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python unzip shared-mime-info
+    && apt install -y isc-dhcp-server webmin perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl python unzip shared-mime-info
 
 ## Set build info ##
 ISC_VERSION=$(apt-cache policy isc-dhcp-server | grep Installed | cut -d' ' -f 4)
