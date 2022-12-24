@@ -2,15 +2,13 @@
 
 ## Install dependencies and fix locales and tzdata to prevent tzdata stopping installation ##
 apt -y update \
-    && apt -y install wget gnupg1 apt-transport-https
-#apt -y update \
-#    && apt -y install wget gnupg1 apt-transport-https \
-#    && apt -y install locales tzdata
-#locale-gen 'en_GB.UTF-8' \
-#    && dpkg-reconfigure --frontend=noninteractive locales
-#ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
-#    && echo 'Europe/London' > /etc/timezone \
-#    && dpkg-reconfigure --frontend=noninteractive tzdata
+    && apt -y install wget gnupg1 apt-transport-https \
+    && apt -y install locales tzdata
+locale-gen 'en_GB.UTF-8' \
+    && dpkg-reconfigure --frontend=noninteractive locales
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
+    && echo 'Europe/London' > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Add depot ##
 echo 'deb https://download.webmin.com/download/repository sarge contrib' | tee -a /etc/apt/sources.list
