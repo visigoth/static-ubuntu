@@ -18,6 +18,10 @@ wget -q -O- http://www.webmin.com/jcameron-key.asc | apt-key add
 apt update -y \
     && apt install -y isc-dhcp-server webmin perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl python unzip shared-mime-info
 
+## Rename installed folder because /etc/webmin will be volume-ised ##
+touch /etc/webmin/orig.flag
+mv /etc/webmin /etc/webmin-orig
+
 ## Set build info ##
 ISC_VERSION=$(apt-cache policy isc-dhcp-server | grep Installed | cut -d' ' -f 4)
 echo "$(date "+%d.%m.%Y %T") Added ISC DHCP Server version ${ISC_VERSION}" >> /build.info
