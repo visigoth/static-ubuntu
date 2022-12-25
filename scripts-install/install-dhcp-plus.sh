@@ -1,10 +1,9 @@
 #!/bin/bash
 
-## Install dependencies ##
+## Clear out default configs ##
+rm -rf /etc/webmin
+rm -rf /etc/dhcp
 
-## Set build info ##
-ISC_VERSION=$(apt-show-versions isc-dhcp-server | grep uptodate | cut -d' ' -f 2)
-echo "$(date "+%d.%m.%Y %T") Added ISC DHCP Server version ${ISC_VERSION}" >> /build.info
-WEBMIN_VERSION=$(webmin --version)
-echo "$(date "+%d.%m.%Y %T") Added WEBMIN version ${WEBMIN_VERSION}" >> /build.info
+## Fix preroot so that webmin can run as root ##
+sed -i "s|preroot|#preroot|g" '/etc/webmin-orig/miniserv.conf'
 
