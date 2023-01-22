@@ -139,19 +139,22 @@ else
                 touch "/config/healthcheck-failure-nzbhydra2-at-$(date "+%d.%m.%Y_%T")"
             fi
             echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
-            ARCHI=$(uname -m)
-            if [[ $ARCHI =~ "armv7l" ]]
-            then
-                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-armhf/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
-            elif [[ $ARCHI =~ "aarch64" ]]
-            then
-                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-arm64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
-            elif [[ $ARCHI =~ "x86_64" ]]
-            then
-                python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
-            else
-                touch "/config/debug-ARCHI_is_$ARCHI-$(date "+%d.%m.%Y_%T")"
-            fi
+            python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            
+            ## v5 doesn't need java, hence no need for different java based on architecture ##
+            #ARCHI=$(uname -m)
+            #if [[ $ARCHI =~ "armv7l" ]]
+            #then
+            #    python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-armhf/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            #elif [[ $ARCHI =~ "aarch64" ]]
+            #then
+            #    python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-arm64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            #elif [[ $ARCHI =~ "x86_64" ]]
+            #then
+            #    python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --java /usr/lib/jvm/java-11-openjdk-amd64/bin/java --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
+            #else
+            #    touch "/config/debug-ARCHI_is_$ARCHI-$(date "+%d.%m.%Y_%T")"
+            #fi
         fi
     fi
 
