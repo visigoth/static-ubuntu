@@ -139,9 +139,7 @@ else
                 touch "/config/healthcheck-failure-nzbhydra2-at-$(date "+%d.%m.%Y_%T")"
             fi
             echo "[info] Run nzbhydra2 in background on port $HYDRA_PORT"
-            python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
-            
-            ## v5 doesn't need java, hence no need for different java based on architecture ##
+            ## v5 doesn't need java, hence no need for different java parameters based on architecture ##
             #ARCHI=$(uname -m)
             #if [[ $ARCHI =~ "armv7l" ]]
             #then
@@ -155,6 +153,9 @@ else
             #else
             #    touch "/config/debug-ARCHI_is_$ARCHI-$(date "+%d.%m.%Y_%T")"
             #fi
+            ## v5 requires running in the same folder as the python wrapper ##
+            cd /app/nzbhydra2/bin
+            python3-nzbhydra2 /app/nzbhydra2/bin/nzbhydra2wrapperPy3.py --daemon --nobrowser --datafolder /config/nzbhydra2 --pidfile /config/nzbhydra2/nzbhydra2.pid
         fi
     fi
 
