@@ -14,6 +14,7 @@ apt -y install openjdk-11-jre-headless
 ARCHI=$(uname -m)
 if [[ $ARCHI =~ "armv7l" ]]
 then
+    # because non-java version isn't available on armv7, use arm64 arch instead (and hope it works)
     ARCHSTR="arm64"
 elif [[ $ARCHI =~ "aarch64" ]]
 then
