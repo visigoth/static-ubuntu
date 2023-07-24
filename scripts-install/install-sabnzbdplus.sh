@@ -12,14 +12,15 @@ add-apt-repository -y multiverse \
     && apt -y update \
     && apt -y full-upgrade
 
-## Fix locales and tzdata to prevent tzdata stopping installation of mono ##
+## Fix locales and tzdata ##
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime
+export DEBIAN_FRONTEND=noninteractive
+echo 'Europe/London' > /etc/timezone
+dpkg-reconfigure --frontend noninteractive tzdata
+locale-gen 'en_GB.UTF-8'
+dpkg-reconfigure --frontend=noninteractive locales
 apt -y install tzdata
 apt -y install locales
-locale-gen 'en_GB.UTF-8' \
-    && dpkg-reconfigure --frontend=noninteractive locales
-ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
-    && echo 'Europe/London' > /etc/timezone \
-    && dpkg-reconfigure --frontend=noninteractive tzdata
 
 ## Install sabnzbdplus and set build info ##
 apt -y install sabnzbdplus
