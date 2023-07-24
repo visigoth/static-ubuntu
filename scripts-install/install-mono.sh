@@ -10,14 +10,15 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BF
     && echo "deb https://download.mono-project.com/repo/ubuntu stable-${UBUNTU_RELEASE} main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
     && apt -y update
 
-## Fix locales and tzdata to prevent tzdata stopping installation of mono ##
-# Must be installed AFTER mono depo is added #
-apt -y install locales tzdata
-locale-gen 'en_GB.UTF-8' \
-    && dpkg-reconfigure --frontend=noninteractive locales
-ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime \
-    && echo 'Europe/London' > /etc/timezone \
-    && dpkg-reconfigure --frontend=noninteractive tzdata
+## Fix locales and tzdata so they don't stop docker build ##
+ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime
+export DEBIAN_FRONTEND=noninteractive
+echo 'Europe/London' > /etc/timezone
+dpkg-reconfigure --frontend noninteractive tzdata
+locale-gen 'en_GB.UTF-8'
+dpkg-reconfigure --frontend=noninteractive locales
+apt -y install tzdata
+apt -y install locales
 
 ## Install mono-complete (cover most cases of "assembly not found" errors) ##
 apt -y install mono-complete
