@@ -25,13 +25,13 @@ done
 echo "[info] Your VPN public IP is $iphiden"
 
 echo "[info] Block DnS to force traffic through tunnel"
-rulehandle="$(nft list table filter -a | grep "tcp sport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
+rulehandle="$(nft -a list table filter | grep "tcp sport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter INPUT handle $rulehandle
-rulehandle="$(nft list table filter -a | grep "tcp dport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
+rulehandle="$(nft -a list table filter | grep "tcp dport $DOT_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter OUTPUT handle $rulehandle
-rulehandle="$(nft list table filter -a | grep "tcp sport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
+rulehandle="$(nft -a list table filter | grep "tcp sport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter INPUT handle $rulehandle
-rulehandle="$(nft list table filter -a | grep "tcp dport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
+rulehandle="$(nft -a list table filter | grep "tcp dport $DNS_PORT")" ; rulehandle=${rulehandle:(-2)}
 nft delete rule filter OUTPUT handle $rulehandle
 
 echo "[info] Change DNS servers to ${DNS_SERVERS}"
