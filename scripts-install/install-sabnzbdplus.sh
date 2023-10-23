@@ -9,6 +9,7 @@ mkdir -p /etc/init.d.disabled
 add-apt-repository -y multiverse \
     && add-apt-repository -y universe \
     && add-apt-repository -y ppa:jcfp/nobetas \
+    && add-apt-repository -y ppa:jcfp/sab-addons \
     && apt -y update \
     && apt -y full-upgrade
 
@@ -23,7 +24,7 @@ apt -y install tzdata
 apt -y install locales
 
 ## Install sabnzbdplus and set build info ##
-apt -y install sabnzbdplus
+apt -y install sabnzbdplus par2-turbo
 mv /etc/init.d/sabnzbdplus /etc/init.d.disabled/
 SABNZBDPLUS_VERSION=$(sabnzbdplus -v | grep 'sabnzbdplus' | cut -d'-' -f 2)
 echo "$(date "+%d.%m.%Y %T") Added sabnzbdplus version ${SABNZBDPLUS_VERSION}" >> /build.info
