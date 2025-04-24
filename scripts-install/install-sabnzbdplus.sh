@@ -8,10 +8,13 @@ mkdir -p /etc/init.d.disabled
 ## Add repos ##
 add-apt-repository -y multiverse \
     && add-apt-repository -y universe \
-    && add-apt-repository -y ppa:jcfp/nobetas \
-    && add-apt-repository -y ppa:jcfp/sab-addons \
     && apt -y update \
     && apt -y full-upgrade
+
+## Add ppa repos
+add-apt-repository -y ppa:jcfp/nobetas
+add-apt-repository -y ppa:jcfp/sab-addons
+apt -y update
 
 ## Fix locales and tzdata ##
 ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime
