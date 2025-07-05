@@ -5,7 +5,9 @@ apt -y update \
     && apt -y install gnupg dirmngr ca-certificates apt-transport-https
 
 ## Add mono depo ##
-UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
+#UBUNTU_RELEASE=$(cat /etc/os-release | grep 'UBUNTU_CODENAME' | cut -d'=' -f 2)
+# Mono only has focal repo that is supposed to work with 20.4+
+UBUNTU_RELEASE='focal'
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
     && echo "deb https://download.mono-project.com/repo/ubuntu stable-${UBUNTU_RELEASE} main" | tee /etc/apt/sources.list.d/mono-official-stable.list \
     && apt -y update
