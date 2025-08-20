@@ -19,7 +19,7 @@ while true
 do
     echo ''
 
-    pidlist=$(pidof influxd)
+    pidlist=$(pidof influxd || echo "")
     if [ -z "$pidlist" ]
     then
         echo '[error] influxdb crashed!'
@@ -27,7 +27,7 @@ do
         echo "[info] influxdb PID: $pidlist"
     fi
 
-    pidlist=$(pidof loki)
+    pidlist=$(pidof loki || echo "")
     if [ -z "$pidlist" ]
     then
         echo '[error] loki crashed!'
@@ -37,7 +37,7 @@ do
 
     if [[ $USE_HDDTEMP =~ "yes" ]]
     then
-        pidlist=$(pidof hddtemp)
+        pidlist=$(pidof hddtemp || echo "")
         if [ -z "$pidlist" ]
         then
             echo '[error] hddtemp crashed!'
@@ -48,7 +48,7 @@ do
         echo "[info] Skip hddtemp due to USE_HDDTEMP set to $USE_HDDTEMP"
     fi
 
-    pidlist=$(pidof telegraf)
+    pidlist=$(pidof telegraf || echo "")
     if [ -z "$pidlist" ]
     then
         echo '[error] telegraf crashed!'
@@ -56,7 +56,7 @@ do
         echo "[info] telegraf PID: $pidlist"
     fi
 
-    pidlist=$(pidof promtail)
+    pidlist=$(pidof promtail || echo "")
     if [ -z "$pidlist" ]
     then
         echo '[error] promtail crashed!'
@@ -64,7 +64,7 @@ do
         echo "[info] promtail PID: $pidlist"
     fi
 
-    pidlist=$(pidof grafana-server)
+    pidlist=$(pidof grafana-server || echo "")
     if [ -z "$pidlist" ]
     then
         echo '[error] grafana crashed!'
