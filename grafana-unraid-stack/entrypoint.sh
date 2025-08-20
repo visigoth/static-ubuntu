@@ -1,17 +1,16 @@
 #!/bin/bash
+set -e
 
-# Initilise apps #
+# Initialise apps #
 echo ''
 echo '[info] Initialisation started...'
-source /static-ubuntu/grafana-unraid-stack/initialise.sh
+/static-ubuntu/grafana-unraid-stack/initialise.sh
 echo '[info] Initialisation complete'
 
 # Run apps #
 echo ''
-echo "[info] Runing apps..."
-touch /config/healthcheck-no-error
-source /static-ubuntu/grafana-unraid-stack/healthcheck.sh
-rm -f /config/healthcheck-no-error
+echo "[info] Running apps..."
+/static-ubuntu/grafana-unraid-stack/healthcheck.sh
 echo "[info] All done"
 
 ### Infinite loop to stop docker from stopping ###

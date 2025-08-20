@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 mkdir -p /config/influxdb \
     && mkdir -p /data/influxdb/data \
