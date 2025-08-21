@@ -64,12 +64,11 @@ do
         echo "[info] promtail PID: $pidlist"
     fi
 
-    pidlist=$(pidof grafana-server || echo "")
-    if [ -z "$pidlist" ]
+    if service grafana-server status >/dev/null 2>&1
     then
-        echo '[error] grafana crashed!'
+        echo "[info] grafana-server is running"
     else
-        echo "[info] grafana PID: $pidlist"
+        echo '[error] grafana-server crashed!'
     fi
 
     sleep $sleep_time

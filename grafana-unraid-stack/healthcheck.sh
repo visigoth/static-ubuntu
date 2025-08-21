@@ -57,11 +57,10 @@ else
 fi
 
 # Check and start grafana-server if not running
-pidlist=$(pidof grafana-server || echo "")
-if [ -z "$pidlist" ]
+if service grafana-server status >/dev/null 2>&1
 then
+    echo "[info] grafana-server is running"
+else
     echo "[info] Run grafana as service on port $GRAFANA_PORT"
     service grafana-server start
-else
-    echo "[info] grafana-server running as pid $pidlist"
 fi
